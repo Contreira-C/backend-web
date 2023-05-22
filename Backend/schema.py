@@ -10,13 +10,6 @@ class TenisBase(BaseModel):
     margem:int
     estilo:str
 
-class TenisCreate(TenisBase):
-    modelo:str
-    cor:str
-    tamanho:int
-    margem:int
-    estilo:str
-
 class Tenis(TenisBase):
     id:int
     class Config:

@@ -29,8 +29,8 @@ def get_all_tenis(db: Session = Depends(get_db), offset:int = 0, limit:int = 10)
     return response
 
 #create
-@app.post("/api/tenis",response_model=schema.Tenis)
-def create_tenis(tenis:schema.TenisCreate,db: Session = Depends(get_db)):
+@app.post("/api/tenis",response_model=schema.TenisBase)
+def create_tenis(tenis:schema.Tenis,db: Session = Depends(get_db)):
     try:
         return crud.create_tenis(db,tenis)
     except TenisException as cie:
@@ -38,7 +38,7 @@ def create_tenis(tenis:schema.TenisCreate,db: Session = Depends(get_db)):
     
 #update
 @app.put("/api/tenis/{tenis_id}",response_model=schema.Tenis)
-def update_tenis(tenis_id:int, tenis:schema.TenisCreate,db:Session = Depends(get_db)):
+def update_tenis(tenis_id:int, tenis:schema.Tenis,db:Session = Depends(get_db)):
     try:
         return crud.update_tenis(db, tenis_id, tenis)
     except TenisException as cie:

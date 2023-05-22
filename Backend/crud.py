@@ -18,7 +18,7 @@ def get_tenis_by_model(db:Session, tenis_model:str):
     return db.query(models.Tenis).filter(models.Tenis.modelo == tenis_model).first()
 
 #create
-def create_tenis(db:Session, tenis:schema.TenisCreate):
+def create_tenis(db:Session, tenis:schema.TenisBase):
     db_tenis = get_tenis_by_model(db,tenis.modelo)
     if db_tenis is not None:
         raise TenisAlreadyExistError
@@ -29,7 +29,7 @@ def create_tenis(db:Session, tenis:schema.TenisCreate):
     return db_tenis
 
 #update
-def update_tenis(db: Session, tenis_id:int, tenis:schema.TenisCreate):
+def update_tenis(db: Session, tenis_id:int, tenis:schema.Tenis):
     db_tenis = get_tenis_by_id(db,tenis_id)
     db_tenis.nome = tenis.nome
     db_tenis.modelo = tenis.modelo
